@@ -1,24 +1,11 @@
-# README
+# SaaS Boilerplate - Ruby on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a wip project for creating a SaaS boilerplate application using Ruby on Rails.
 
-Things you may want to cover:
+Currently using Divise & Tailwind gems
 
-* Ruby version
+## Getting started
 
-* System dependencies
+coming soon...
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
