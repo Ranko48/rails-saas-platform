@@ -1,0 +1,7 @@
+<div class="mx-auto w-full">
+  <%= link_to "← Back to tickets", tickets_path, class: "rounded-lg inline-block font-light" %>
+  <h1 class="font-bold text-2xl mt-5 mb-4">New ticket</h1>
+  <p class="mb-3">Describe your problem below:</p>
+  <%= render "form", ticket: @ticket %>
+
+</div>
