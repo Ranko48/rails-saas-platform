@@ -1,6 +1,10 @@
 name: ci
 run-name: Main CI actions
-on: [push, pull_request]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
   linting:
     runs-on: ubuntu-latest
