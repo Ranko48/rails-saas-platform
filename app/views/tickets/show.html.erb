@@ -1,0 +1,19 @@
+<div class="mx-auto w-full flex">
+  <div class="mx-auto w-full flex flex-col">
+    <div class="flex justify-between pb-1">
+        <%= button_to "← Go back", tickets_path, method: :get, class: "mt-2 rounded-lg py-1 px-2 hover:text-gray-800" %>
+        <%= button_to "Delete this ticket", ticket_path(@ticket), method: :delete, class: "mt-2 rounded-lg mr-1 py-1 px-2 hover:text-gray-800" %>
+    </div>
+    <div class="flex flex-col mt-5 ">
+      <span class="px-2.5 py-0.5 rounded font-medium border border-black w-fit"><%= @ticket.resolved ? "Closed" : 'Open'  %></span>
+      <div class="mb-3 mt-2">
+        <span>Ticket created:</span> <%= @ticket.created_at %>
+      </div>
+      <h3 class="text-xl">Your problem:</h3>
+      <textarea rows="7" readonly disabled class="w-full mt-3 rounded">
+        <%= @ticket.problem %>
+    </textarea>
+</div>
+
+  </div>
+</div>

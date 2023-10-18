@@ -1,2 +1,10 @@
-<h1>AuthPages#contact</h1>
-<p>Find me in app/views/auth_pages/contact.html.erb</p>
+<div>
+    <p class="mb-2">If you need help with anything, tell us your issue below and we will be in touch within the next 24 hours
+  <%= form_with do |form| %>
+    <div class="flex flex-col">
+      <%= form.label :problem, "Describe your problem" %>
+      <%= form.text_area :problem, class: "border rounded" %>
+      <%= form.submit "Create Ticket", class: "bg-blue-400 px-5 py-2 mt-1 rounded text-white w-fit" %>
+    <div>
+<% end %>
+    </div>
