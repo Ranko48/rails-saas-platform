@@ -55,7 +55,8 @@ class TicketsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_ticket
-    @ticket = Ticket.find(params[:id])
+    @ticket = Ticket.find_by_id(params[:id])
+    raise ActionController::RoutingError, 'Not Found' if @ticket.blank?
   end
 
   # Only allow a list of trusted parameters through.
