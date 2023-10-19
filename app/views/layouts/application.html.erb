@@ -7,20 +7,23 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <div class="container mx-auto p-5 l-64">
+    <div class="container mx-auto">
       <% if user_signed_in? %>
           <%= render "layouts/menu" %>
       <% end %>
       <% if notice %>
-        <p class="bg-blue-100 border border-blue-500 text-blue-700 px-4 py-3 rounded-lg mb-2" role="alert"><%= notice %></p>
+        <%= render "components/notice" %>
       <% end %>
       <% if alert %>
-        <p class="bg-blue-100 border border-blue-500 text-blue-700 px-4 py-3 rounded-lg mb-2" role="alert"><%= alert %></p>
+        <%= render "components/alert" %>
       <% end %>
-      <%= yield %>
+      <div class="px-5">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

@@ -10,9 +10,7 @@
         <span>Ticket created:</span> <%= @ticket.created_at %>
       </div>
       <h3 class="text-xl">Your problem:</h3>
-      <textarea rows="7" readonly disabled class="w-full mt-3 rounded">
-        <%= @ticket.problem %>
-    </textarea>
+      <textarea rows="7" readonly disabled class="w-full mt-3 rounded"><%= @ticket.problem %></textarea>
 </div>
 
   </div>
