@@ -1,0 +1,10 @@
+<script>
+    gsap.from("#notice", { opacity: 0, y: 50})
+    setTimeout(() => {
+        gsap.to("#notice", { opacity: 0, y: 50, display: 'none'});
+    }, 3000);
+</script>
+
+<p class="bg-blue-100 border border-blue-500 text-blue-700 px-4 py-3 rounded-lg mb-2 fixed bottom-10 inset-x-0 max-w-max mx-auto" role="alert" id="notice">
+    <%= notice %>
+</p>

@@ -1,14 +1,4 @@
 <%= form_with(model: ticket, class: "contents") do |form| %>
-  <% if ticket.errors.any? %>
-    <div id="error_explanation" class="mb-5 bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(ticket.errors.count, "error") %>:</h2>
-      <ul class="mt-2">
-        <% ticket.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="flex flex-col">
     <%= form.text_area :problem, class: "rounded-lg py-2 px-2 w-full" %>
