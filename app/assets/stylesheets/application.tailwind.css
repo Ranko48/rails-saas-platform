@@ -2,12 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
 
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+@layer utilities {
+  h1 {
+    @apply text-3xl mb-4;
+  }
+
+  h2 {
+    @apply text-2xl mb-3;
+  }
+
+  h3 {
+    @apply text-xl mb-3;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  select,
+  input[type="password"] {
+    @apply w-full rounded
+  }
+
+  input[type="submit"] {
+    @apply bg-blue-600 p-2 rounded text-white mt-2 mb-2 hover:bg-blue-700 hover:cursor-pointer
+  }
+
+  input[type="email"]:disabled {
+    @apply bg-gray-300
+  }
+
+  
+  label {
+    @apply mb-2 text-gray-700 text-sm font-bold
   }
 }
-
-*/
