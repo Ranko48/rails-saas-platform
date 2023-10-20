@@ -8,5 +8,5 @@ class User < ApplicationRecord
 
   has_many :tickets
 
-  validates :timezone, inclusion: { in: TZInfo::Timezone.all_identifiers }
+  validates :timezone, inclusion: { in: ActiveSupport::TimeZone.all.map(&:name) }
 end
