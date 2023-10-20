@@ -31,8 +31,11 @@
     @apply bg-gray-300
   }
 
-  
   label {
     @apply mb-2 text-gray-700 text-sm font-bold
+  }
+
+  a {
+    @apply hover:underline
   }
 }

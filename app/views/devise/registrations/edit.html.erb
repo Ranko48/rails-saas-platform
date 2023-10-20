@@ -21,7 +21,7 @@
 
   <div>
     <hr/>
-    <h3 class="mt-3">Change my password</h3>
+    <h3 class="mt-5 mb-5">Change my password</h3>
     <%= f.label :new_password %> <i class="text-xs"><%= @minimum_password_length %> characters minimum</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
