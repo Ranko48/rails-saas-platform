@@ -33,6 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
       # t.datetime :locked_at
 
       t.timestamps null: false
+      t.string :timezone, default: 'London'
     end
 
     add_index :users, :email,                unique: true

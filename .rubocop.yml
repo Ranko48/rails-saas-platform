@@ -5,6 +5,8 @@ Layout/LineLength:
   Enabled: false
 Metrics/BlockLength:
   Enabled: false
+Metrics/MethodLength:
+  Enabled: false
 AllCops:
   NewCops: enable
   SuggestExtensions: false

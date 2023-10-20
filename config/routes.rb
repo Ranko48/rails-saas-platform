@@ -2,9 +2,18 @@
 
 Rails.application.routes.draw do
   resources :tickets
-  devise_for :users
+  devise_for :users, skip: %i[sessions registrations]
   devise_scope :user do
-    get '/users/sign_out' => 'devise/sessions#destroy'
+    get 'login',  to: 'devise/sessions#new', as: :new_user_session
+    post 'login', to: 'devise/sessions#create', as: :user_session
+    get 'log_out' => 'devise/sessions#destroy', as: :destroy_user_session
+
+    get 'signup' => 'devise/registrations#new', as: :new_user_registration
+    post 'signup' => 'devise/registrations#create', as: :user_registration
+    put 'signup' => 'devise/registrations#update', as: :update_user_registration
+    patch 'signup' => 'devise/registrations#update', as: :patch_user_registration
+
+    get 'edit-user' => 'devise/registrations#edit', as: :edit_user_registration
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

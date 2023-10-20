@@ -7,4 +7,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :tickets
+
+  validates :timezone, inclusion: { in: TZInfo::Timezone.all_identifiers }
 end
