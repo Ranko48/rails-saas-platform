@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=password
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+  test-db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=test_app
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=password
+    ports:
+      - '5434:5432'
+volumes:
+  db:
+    driver: local
