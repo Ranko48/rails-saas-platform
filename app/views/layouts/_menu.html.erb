@@ -1,31 +1,39 @@
-<script></script>
-<nav class="bg-white flex flex-wrap items-center py-5 px-5 mb-5 border-b-2 border-b-black">
-  <div class="flex-1 flex justify-between items-center">
-    <a href="/" class="flex text-lg">
-      <div class="mt-3">SaaS Boilerplate</div>
-    </a>
-  </div>
-  <div class="flex items-center w-auto w-full" id="menu">
-    <nav>
-      <ul class="text-xl text-center items-center gap-x-5 pt-4 md:gap-x-4 lg:text-lg lg:flex  lg:pt-0">
-        <div data-controller="visibility" class="relative">
-          <button data-action="click->visibility#toggleTargets click@window->visibility#hideTargets touchend@window->visibility#hideTargets" class="flex w-30 justify-center shadow text-right gap-x-2 rounded-full bg-white px-5 py-4 text-xs font-light text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="avatar-menu">
-            <%= current_user.email[0].upcase %>
-          </button>
-          <div class="absolute w-[250px] right-0 border bg-white top-[55px] rounded text-left" data-visibility-target="hideable" hidden>
-            <div class="flex flex-col">
-              <div class="border-b order-b-grey-600 px-4 py-2">
-                <%= link_to "My Account", edit_user_registration_path %>
-              </div>
-              <div class="border-b border-b-grey-600 px-4 py-2">
-                <%= link_to "Help", "/tickets/" %>
-              </div>
-              <div class="px-4 py-2">
-                <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+<nav class="bg-white fixed w-full h-[100px] py-5 px-5 mb-5 shadow-sm">
+  <div class="container mx-auto flex justify-between items-center">
+    <div>
+      <a href="/" class="text-lg">
+        <div class="mt-3">SaaS Boilerplate</div>
+      </a>
+    </div>
+    <div class="flex items-center w-auto w-full justify-end" id="menu">
+      <nav>
+        <ul class="text-xl text-center items-center gap-x-5 pt-4 md:gap-x-4 lg:text-lg lg:flex lg:pt-0">
+          <div data-controller="visibility" class="relative">
+            <button data-action="click->visibility#toggleTargets click@window->visibility#hideTargets touchend@window->visibility#hideTargets" class="flex w-30 justify-center shadow text-right gap-x-2 rounded-full bg-white px-5 py-4 text-xs font-light text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="avatar-menu">
+              <%= current_user.email[0].upcase %>
+            </button>
+            <div class="absolute w-[300px] shadow-md right-0 border bg-white top-[55px] rounded text-left" data-visibility-target="hideable" hidden>
+              <div class="flex flex-col px-3 py-3">
+                <div class="bg-grey-800 px-4 pt-10 pb-5 text-xs text-gray-500 border-b border-b-grey-600 flex items-center">
+                  <div class="flex w-30 justify-center gap-x-2 rounded-full bg-white px-5 py-4 text-xs font-light text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
+                    <%= current_user.email[0].upcase %>
+                  </div>
+                  <span class="ml-3"><%= current_user.email %></span>
+                </div>
+                <div class="border-b border-b-grey-600 px-4 py-2 rounded w-full text-sm hover:bg-gray-100">
+                  <%= link_to "My Account", edit_user_registration_path %>
+                </div>
+                <div class="border-b border-b-grey-600 px-4 py-2 rounded w-full text-sm hover:bg-gray-100">
+                  <%= link_to "Help", "/tickets/", class: 'text-sm' %>
+                </div>
+                <div class="px-4 py-2 rounded w-full text-sm hover:bg-gray-100">
+                  <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: 'text-sm' %>
+                </div>
               </div>
             </div>
           </div>
         </ul>
       </nav>
     </div>
-  </nav>
+  </div>
+</nav>
