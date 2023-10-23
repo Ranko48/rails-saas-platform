@@ -3,6 +3,11 @@ variable "domain" {
     type = string
 }
 
+variable "region" {
+    description = "AWS region for environment"
+    type = string 
+}
+
 variable "aws_access_key_id" {
     description = "AWS Access Key id"
     type = string
