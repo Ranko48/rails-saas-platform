@@ -7,8 +7,8 @@ on:
     types: 
       - completed
 jobs:
-  deployNginx:
-    name: deploy nginx
+  deploy:
+    name: deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
