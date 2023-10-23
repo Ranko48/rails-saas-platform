@@ -37,11 +37,12 @@ resource "aws_lb_target_group" "app_alb_target" {
   health_check {
     path     = "/up"
     port     = 80
-    protocol = "HTTPS"
+    protocol = "HTTP"
     healthy_threshold = 2
     interval = 30
     timeout = 10
     unhealthy_threshold = 5
+    matcher = ["200-299", "300-308"]
   }
 }
 
