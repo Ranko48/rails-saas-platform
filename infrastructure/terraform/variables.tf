@@ -38,6 +38,12 @@ variable "db_password" {
     sensitive = true
 }
 
+variable "secret_key_base" {
+    description = "Rails secret key base credentials"
+    type = string
+    sensitive = true
+}
+
 variable "app_auto_scaling_min" {
     description = "Minimum ec2 instances for app auto-scaling group"
     type = string
