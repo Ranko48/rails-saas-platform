@@ -76,3 +76,7 @@ gem 'htmlbeautifier', '~> 1.4'
 gem 'chronic', '~> 0.10.2'
 
 gem 'rubocop', require: false
+
+gem 'sentry-ruby'
+
+gem 'sentry-rails'
