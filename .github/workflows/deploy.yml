@@ -1,0 +1,48 @@
+name: cd
+run-name: Deploy app to AWS
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    types: [closed]
+    branches: [ main ]
+jobs:
+  deploy-nginx:
+    name: deploy nginx
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - uses: actions/checkout@v3
+      - name: Setup AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: Deploy to AWS ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          BACKEND_ECR_REPOSITORY: app
+          BACKEND_IMAGE_TAG: latest
+          NGINX_ECR_REPOSITORY: nginx
+          NGINX_IMAGE_TAG: latest
+        run: |
+          docker build -t $ECR_REGISTRY/$BACKEND_ECR_REPOSITORY:$BACKEND_IMAGE_TAG .
+          docker push $ECR_REGISTRY/$BACKEND_ECR_REPOSITORY:$BACKEND_IMAGE_TAG
+          cd infrastructure
+          docker build -t $ECR_REGISTRY/$NGINX_ECR_REPOSITORY:$NGINX_IMAGE_TAG -f Nginx.Dockerfile .
+          docker push $ECR_REGISTRY/$NGINX_ECR_REPOSITORY:$NGINX_IMAGE_TAG
+          aws ecs update-service --cluster ${{secrets.CLUSTER_NAME}} --service ${{secrets.SERVICE_NAME}} --force-new-deployment --region eu-west-1
+  deploy app:
+    name: deploy app
+    runs-on: ubuntu-latest
