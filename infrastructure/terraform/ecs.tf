@@ -20,11 +20,11 @@ resource "aws_ecs_task_definition" "app" {
     "essential": true,
     "environment": [
       {"name": "DOMAIN", "value": "${var.domain}"},
-      {"name": "SECRET_KEY_BASE", "value": "${var.secret_key_base}"},
       {"name": "DB_PASSWORD", "value": "${var.db_password}"},
       {"name": "DB_HOST", "value": "${module.db.db_instance_address}"},
       {"name": "DB_USERNAME", "value": "${module.db.db_instance_username}"},
-      {"name": "DB_NAME", "value": "${module.db.db_instance_name}"}
+      {"name": "DB_NAME", "value": "${module.db.db_instance_name}"},
+      {"name": "SECRET_KEY_BASE", "value": "${var.secret_key_base}"}
     ],
     "portMappings": [
         {
