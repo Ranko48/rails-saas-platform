@@ -21,7 +21,7 @@ module "db" {
   maintenance_window = "Mon:00:00-Mon:03:00"
 
   password = var.db_password
-  create_random_password = false
+  manage_master_user_password = false
 
   # Enhanced Monitoring - see example for details on how to create the role
   # by yourself, in case you don't want to create it automatically
