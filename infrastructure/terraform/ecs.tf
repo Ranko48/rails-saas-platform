@@ -23,8 +23,7 @@ resource "aws_ecs_task_definition" "app" {
       {"name": "DB_PASSWORD", "value": "${var.db_password}"},
       {"name": "DB_HOST", "value": "${module.db.db_instance_address}"},
       {"name": "DB_USERNAME", "value": "${module.db.db_instance_username}"},
-      {"name": "DB_NAME", "value": "${module.db.db_instance_name}"},
-
+      {"name": "DB_NAME", "value": "${module.db.db_instance_name}"}
     ],
     "portMappings": [
         {
