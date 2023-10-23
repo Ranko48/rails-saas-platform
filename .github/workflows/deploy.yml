@@ -1,13 +1,13 @@
 name: cd
 run-name: Deploy app to AWS
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    types: [closed]
-    branches: [ main ]
+  workflow_run:
+    workflows: ["ci"]
+    branches: [main]
+    types: 
+      - completed
 jobs:
-  deploy-nginx:
+  deployNginx:
     name: deploy nginx
     runs-on: ubuntu-latest
     steps:
@@ -43,6 +43,3 @@ jobs:
           docker build -t $ECR_REGISTRY/$NGINX_ECR_REPOSITORY:$NGINX_IMAGE_TAG -f Nginx.Dockerfile .
           docker push $ECR_REGISTRY/$NGINX_ECR_REPOSITORY:$NGINX_IMAGE_TAG
           aws ecs update-service --cluster ${{secrets.CLUSTER_NAME}} --service ${{secrets.SERVICE_NAME}} --force-new-deployment --region eu-west-1
-  deploy app:
-    name: deploy app
-    runs-on: ubuntu-latest
