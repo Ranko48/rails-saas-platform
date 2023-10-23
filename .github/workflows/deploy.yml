@@ -42,4 +42,4 @@ jobs:
           cd infrastructure
           docker build -t $ECR_REGISTRY/$NGINX_ECR_REPOSITORY:$NGINX_IMAGE_TAG -f Nginx.Dockerfile .
           docker push $ECR_REGISTRY/$NGINX_ECR_REPOSITORY:$NGINX_IMAGE_TAG
-          aws ecs update-service --cluster ${{secrets.CLUSTER_NAME}} --service ${{secrets.SERVICE_NAME}} --force-new-deployment --region eu-west-1
+          aws ecs update-service --cluster ${{secrets.CLUSTER_NAME}} --service ${{secrets.SERVICE_NAME}} --force-new-deployment --region eu-west-2
