@@ -36,7 +36,7 @@ resource "aws_ecs_task_definition" "app" {
       "logDriver": "awslogs",
       "options": {
         "awslogs-region": "${var.region}",
-        "awslogs-group": "${aws_cloudwatch_log_group.backend-log-group.name}",
+        "awslogs-group": "${aws_cloudwatch_log_group.app-log-group.name}",
         "awslogs-stream-prefix": "ec2"
       }
     }
