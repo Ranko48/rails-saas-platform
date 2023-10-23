@@ -54,4 +54,4 @@ variable "ecs_ami_image" {
 variable "ecs_instance_type" {
     description = "Instance type used by ECS cluster"
     type = string
-    
+}
