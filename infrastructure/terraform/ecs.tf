@@ -110,7 +110,7 @@ module "ecs" {
   autoscaling_capacity_providers = {
     one = {
       create_before_destroy          = true
-      auto_scaling_group_arn         = module.backend_autoscaling.autoscaling_group_arn
+      auto_scaling_group_arn         = module.app_autoscaling.autoscaling_group_arn
       managed_termination_protection = "ENABLED"
       managed_scaling = {
         maximum_scaling_step_size = 1
@@ -127,7 +127,7 @@ module "ecs" {
 }
 
 
-module "backend_autoscaling" {
+module "app_autoscaling" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "~> 6.5"
   name = local.cluster_name
@@ -145,8 +145,8 @@ module "backend_autoscaling" {
   }
   vpc_zone_identifier = module.vpc.private_subnets
   health_check_type   = "EC2"
-  min_size            = var.backend_auto_scaling_min
-  max_size            = var.backend_auto_scaling_max
+  min_size            = var.app_auto_scaling_min
+  max_size            = var.app_auto_scaling_max
   desired_capacity    = 1
   # https://github.com/hashicorp/terraform-provider-aws/issues/12582
   autoscaling_group_tags = {

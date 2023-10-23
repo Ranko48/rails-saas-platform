@@ -32,3 +32,26 @@ variable "db_password" {
     type = string
     sensitive = true
 }
+
+variable "app_auto_scaling_min" {
+    description = "Minimum ec2 instances for app auto-scaling group"
+    type = string
+    default = 1
+}
+
+variable "app_auto_scaling_max" {
+    description = "Maximum ec2 instances for app auto-scaling group"
+    type = string
+    default = 1
+}
+
+variable "ecs_ami_image" {
+    description = "AMI used for EC2 instances on ECS"
+    type = string
+    default = "ami-005b5f3941c234694"
+}
+
+variable "ecs_instance_type" {
+    description = "Instance type used by ECS cluster"
+    type = string
+    
