@@ -38,7 +38,7 @@ variable "db_password" {
     sensitive = true
 }
 
-variable "secret_key_base" {
+variable "secret_key" {
     description = "Rails secret key base credentials"
     type = string
     sensitive = true
