@@ -14,8 +14,6 @@ class ApplicationController < ActionController::Base
   end
 
   def switch_time_zone(&)
-    puts 'HEY THERFE1111111'
-    puts current_user.timezone
     Time.use_zone(current_user.timezone, &)
   end
 
