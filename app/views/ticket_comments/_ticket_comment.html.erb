@@ -1,0 +1,9 @@
+<div class="shadow rounded border border-gray-500 mt-3 flex flex-col w-100 sm:w-[40%] msg-<%= ticket_comment.user.id %>">
+  <div class="flex justify-between border-b p-3 ">
+    <span class="text-xs"><%= ticket_comment.user.full_name %></span>
+    <span class="text-xs">Posted <%= time_ago_in_words ticket_comment.created_at %> ago</span>
+  </div>
+  <div class="mt-3 p-3 text-left">
+    <%= ticket_comment.comment %>
+  </div>
+</div>

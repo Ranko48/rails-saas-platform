@@ -2,16 +2,19 @@
 
 class TicketsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_ticket, only: %i[show destroy]
+  before_action :set_ticket, only: %i[destroy]
 
   # GET /tickets or /tickets.json
   def index
-    puts Ticket.column_names
     @tickets = Ticket.where(user_id: current_user.id)
   end
 
   # GET /tickets/1 or /tickets/1.json
-  def show; end
+  def show
+    @ticket = Ticket.includes(:ticket_comments).find_by_id(params[:id])
+    head(:unauthorized) if @ticket.user_id != current_user.id
+    raise ActionController::RoutingError, 'Not Found' if @ticket.blank?
+  end
 
   # GET /tickets/new
   def new
@@ -44,10 +47,10 @@ class TicketsController < ApplicationController
 
   # DELETE /tickets/1 or /tickets/1.json
   def destroy
-    @ticket.destroy!
-
+    @ticket.resolved = true
+    @ticket.save
     respond_to do |format|
-      format.html { redirect_to tickets_url, notice: 'Your ticket was successfully deleted.' }
+      format.html { redirect_to ticket_url(@ticket), notice: 'Your ticket was successfully closed.' }
     end
   end
 

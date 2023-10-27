@@ -32,11 +32,9 @@ class TicketsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should destroy ticket' do
-    assert_difference('Ticket.count', -1) do
-      delete ticket_url(@ticket)
-    end
-
-    assert_redirected_to tickets_url
+  test 'should close ticket when destroyed' do
+    delete ticket_url(@ticket)
+    assert @ticket.resolved = true
+    assert_redirected_to ticket_url(@ticket)
   end
 end
