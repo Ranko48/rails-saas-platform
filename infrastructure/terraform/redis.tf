@@ -40,7 +40,7 @@ module "redis" {
   subnet_ids = module.vpc.elasticache_subnets
   vpc_id     = module.vpc.vpc_id
 
-  allowed_security_groups = [aws_security_group.cache_to_app_sg.id]
+  security_group_ids = [aws_security_group.cache_to_app_sg.id]
 
   parameter = [
     {
