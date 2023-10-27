@@ -24,6 +24,7 @@ resource "aws_ecs_task_definition" "app" {
       {"name": "DB_HOST", "value": "${module.db.db_instance_address}"},
       {"name": "DB_USERNAME", "value": "${module.db.db_instance_username}"},
       {"name": "DB_NAME", "value": "${module.db.db_instance_name}"},
+      {"name": "REDIS_URL", "value": "${aws_elasticache_cluster.redis_cache.endpoint}"},
       {"name": "SECRET_KEY_BASE", "value": "${var.secret_key}"}
     ],
     "portMappings": [

@@ -66,3 +66,9 @@ variable "ecs_instance_type" {
     description = "Instance type used by ECS cluster"
     type = string
 }
+
+variable "redis_instance_type" {
+    description = "Instance type used by redis"
+    type = string
+    default = "cache.t3.micro"
+}
