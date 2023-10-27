@@ -43,8 +43,8 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
-  config.action_cable.url = "wss://saas.marcusrc.com/cable
-  config.action_cable.allowed_request_origins = [/http:\/\/saas.marcusrc.com/, /https:\/\/saas.marcusrc.com/]
+  config.action_cable.url = 'wss://saas.marcusrc.com/cable'
+  config.action_cable.allowed_request_origins = [%r{http://saas.marcusrc.com}, %r{https://saas.marcusrc.com}]
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
@@ -63,7 +63,7 @@ Rails.application.configure do
 
   # Info include generic and useful information about system operation, but avoids logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII). If you
-  # want to log everything, set the level to "debug".
+  # want to log everything, set the level to 'debug'.
   config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info')
 
   # Use a different cache store in production.
@@ -71,7 +71,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "saas_rails_production"
+  # config.active_job.queue_name_prefix = 'saas_rails_production'
 
   config.action_mailer.perform_caching = false
 
@@ -91,9 +91,9 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
-  #   "example.com",     # Allow requests from example.com
+  #   'example.com',     # Allow requests from example.com
   #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
-  # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  # config.host_authorization = { exclude: ->(request) { request.path == '/up' } }
 end
