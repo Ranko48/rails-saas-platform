@@ -1,0 +1,2 @@
+<%= turbo_stream.replace "form_ticket_#{@ticket.id}", partial: 'ticket_comments/ticket_comment_form', locals: { ticket_comment: TicketComment.new } %>
+<%= turbo_stream.update "notice", partial: 'components/notice', locals: { notice: 'Comment was successfully added.' } %>

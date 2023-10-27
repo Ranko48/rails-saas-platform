@@ -1,0 +1,16 @@
+  <%= turbo_frame_tag dom_id(@ticket, 'form') do %>
+  <div class="flex flex-col items-center">
+    <div class="w-[100%] sm:w-[50%] flex-1">
+  <%= form_for(ticket_comment, url: new_ticket_comment_path(@ticket.id), html: { id: "ticket_comments_form", method: :post }) do |f| %>
+    <div class="border border-gray-500 flex flex-col mt-10 mb-5 field">
+      <%= f.text_area :comment, placeholder: "Reply or add more description to your ticket...", style: "resize: none;", rows: "4", class: "w-full border-0 border-b"  %>
+      <div class="flex justify-end bg-gray-100">
+        <div class="mr-2 w-fit">
+        <%= f.submit "Post", data: { disable_with: "Posting..." }, class: "w-[200px] py-1 px-10 bg-blue-600 text-white hover:bg-blue-700 grow" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
+<% end %>

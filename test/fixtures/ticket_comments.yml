@@ -1,0 +1,10 @@
+
+ticket_comment_one: 
+  comment: 'You can cancel by emailing and requesting to cancel'
+  user_id: 2
+  ticket_id: 1
+
+ticket_comment_two: 
+  comment: 'Thank you, I have done that!'
+  user_id: 1
+  ticket_id: 1

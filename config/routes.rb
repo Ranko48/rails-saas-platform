@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   get 'contact' => 'auth_pages#contact'
 
+  post 'tickets/:ticket_id/comments' => 'ticket_comments#new', as: :new_ticket_comment
+
   # Defines the root path route ("/")
   root 'auth_pages#index'
 end

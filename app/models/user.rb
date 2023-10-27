@@ -9,4 +9,10 @@ class User < ApplicationRecord
   has_many :tickets
 
   validates :timezone, inclusion: { in: ActiveSupport::TimeZone.all.map(&:name) }
+  validates :first_name, presence: true, length: { minimum: 2, maximum: 300 }
+  validates :last_name, presence: true, length: { minimum: 2, maximum: 300 }
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

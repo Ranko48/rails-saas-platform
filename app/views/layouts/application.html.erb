@@ -9,6 +9,12 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <%= javascript_importmap_tags %>
+
+    <style>
+      <%= ".msg-#{current_user&.id}" %> {
+        align-self: end;
+      }
+    </style>
   </head>
   <body>
     <div class="mx-auto min-h-screen">
@@ -21,6 +27,11 @@
       <% if alert %>
         <%= render "components/alert" %>
       <% end %>
+
+      <turbo-frame id="error"></turbo-frame>
+      <turbo-frame id="notice"></turbo-frame>
+
+
       <div class="px-5 sm:px-0 container mx-auto pt-[120px] mb-10">
         <%= yield %>
       </div>

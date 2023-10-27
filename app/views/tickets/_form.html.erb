@@ -1,7 +1,9 @@
 <%= form_with(model: ticket, class: "contents") do |form| %>
 
   <div class="flex flex-col">
-    <%= form.text_area :problem, class: "rounded-lg py-2 px-2 w-full" %>
+    <%= form.text_area :problem, class: "rounded-lg py-2 px-2 w-full mb-2" %>
+    <%= form.label :category %>
+    <%= form.select :category, options_for_select(Ticket.categories.map {|key, value| [key.titleize, Ticket.categories.key(value)]}), class: "rounded-lg py-2 px-2 w-full" %>
     <%= form.submit "Open Ticket", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer w-fit mt-5" %>
   </div>
 <% end %>
