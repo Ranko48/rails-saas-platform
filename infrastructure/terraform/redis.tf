@@ -1,14 +1,3 @@
-resource "aws_elasticache_cluster" "redis_cache" {
-  cluster_id           = "${var.environment}-redis"
-  engine               = "redis"
-  node_type            = var.redis_instance_type
-  num_cache_nodes      = 1
-  parameter_group_name = "default.redis3.2"
-  engine_version       = "3.2.10"
-  port                 = 6379
-  subnet_group_name    = module.vpc.elasticache_subnet_group_name
-  security_group_ids   = [aws_security_group.cache_to_app_sg.id]
-}
 resource "aws_security_group" "cache_to_app_sg" {
     name = "${var.environment}-cache-app"
     description = "Allow traffic from main application to cache via Redis"
@@ -28,4 +17,35 @@ resource "aws_security_group" "cache_to_app_sg" {
         protocol         = "tcp"
         cidr_blocks      = module.vpc.private_subnets_cidr_blocks
     }
+}
+
+module "redis" {
+  source = "umotif-public/elasticache-redis/aws"
+  name_prefix        = "redis-main"
+  num_cache_clusters = 1
+  node_type          = var.redis_instance_type
+  engine_version           = "7.0"
+  port                     = 6379
+  maintenance_window       = "mon:03:00-mon:04:00"
+  snapshot_window          = "04:00-06:00"
+  snapshot_retention_limit = 7
+  automatic_failover_enabled = true
+  multi_az_enabled           = false
+  at_rest_encryption_enabled = true
+  transit_encryption_enabled = false
+  apply_immediately = true
+  family            = "redis7"
+  description       = "Elasticache Redis for app"
+
+  subnet_ids = [module.vpc.elasticache_subnets]
+  vpc_id     = module.vpc.vpc_id
+
+  allowed_security_groups = [aws_security_group.cache_to_app_sg.id]
+
+  parameter = [
+    {
+      name  = "repl-backlog-size"
+      value = "16384"
+    }
+  ]
 }
