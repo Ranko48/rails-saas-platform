@@ -1,9 +1,7 @@
-
 resource "aws_cloudfront_distribution" "app_distribution" {
     enabled             = true
     is_ipv6_enabled     = true
     aliases = [var.domain]
-
     restrictions {
         geo_restriction {
             restriction_type = "none"
@@ -14,7 +12,6 @@ resource "aws_cloudfront_distribution" "app_distribution" {
         acm_certificate_arn = "${aws_acm_certificate_validation.cert_validation.certificate_arn}"
         ssl_support_method = "sni-only"
     }
-
     origin {
         custom_origin_config {
             http_port = 80
@@ -25,7 +22,6 @@ resource "aws_cloudfront_distribution" "app_distribution" {
         domain_name = "${aws_lb.app_alb.dns_name}"
         origin_id   = "app-alb"
     }
-
     default_cache_behavior {
         allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
         cached_methods   = ["GET", "HEAD"]
