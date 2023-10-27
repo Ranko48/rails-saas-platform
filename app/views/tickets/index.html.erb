@@ -10,7 +10,7 @@
     <% end %>
     <% if @tickets.length > 0%>
       <table class="table-fixed border-separate py-2 px-2 mt-5 border border-black w-full">
-        <thead class="text-left">
+        <thead class="text-left text-xs md:text-sm">
           <tr>
             <th>Problem</th>
             <th>Status</th>
@@ -19,7 +19,7 @@
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody class="text-left">
+        <tbody class="text-left text-xs md:text-sm">
           <% @tickets.each do |ticket| %>
             <tr>
               <td><%= ticket.problem[0,30]... %></td>
