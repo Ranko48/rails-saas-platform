@@ -25,6 +25,10 @@ Rails.application.routes.draw do
 
   post 'tickets/:ticket_id/comments' => 'ticket_comments#new', as: :new_ticket_comment
 
+  post 'notifications' => 'notification#mark_notifications_as_read', as: :notification_mark_as_read
+
+  get 'notification/:notification_id' => 'notification#redirect_to_notification', as: :notification_redirect
+
   # Defines the root path route ("/")
   root 'auth_pages#index'
 end

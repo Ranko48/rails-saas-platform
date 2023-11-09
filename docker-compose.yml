@@ -11,6 +11,15 @@ services:
       - '5432:5432'
     volumes: 
       - db:/var/lib/postgresql/data
+
+  redis:
+    image: redis:latest
+    command: redis-server
+    volumes:
+      - redis:/var/lib/redis
+    ports:
+      - 6379:6379
+  
   test-db:
     image: postgres:15-alpine
     restart: always
@@ -20,6 +29,8 @@ services:
       - POSTGRES_PASSWORD=password
     ports:
       - '5434:5432'
+
 volumes:
+  redis:
   db:
     driver: local
