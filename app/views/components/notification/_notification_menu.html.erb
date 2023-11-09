@@ -1,0 +1,23 @@
+<%= turbo_stream_from current_user, :notifications %>
+<div data-controller="visibility" class="relative">
+  <button data-action="click->visibility#toggleNotificationTargets click@window->visibility#hideNotificationTargets touchend@window->visibility#hideNotificationTargets" class="flex w-[30] justify-center shadow text-right rounded-full bg-white px-4 py-4 text-xs font-light text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="notifications-menu">
+    <%= image_tag "notification.svg", class: 'h-[15px] pointer-events-none' %>
+    <div id="notification_btn">
+      <% if notifications.length > 0 %>
+        <%= render partial: "components/notification/notification_button", locals: { notification_count: notifications.length }%>
+      <% end %>
+    </div>
+  </button>
+  <div class="absolute w-[300px] shadow-md right-0 border bg-white top-[55px] rounded text-left max-h-[500px] overflow-scroll" data-visibility-target="notification" hidden>
+    <div class="flex flex-col py-5">
+      <div class="p-1 border-b border-b-gray mb-2 px-2 shadow-sm flex justify-between items-center">
+        <h5 class="text-sm">Notifications</h5>
+        <%= button_to "Mark as Read",  notification_mark_as_read_path, method: :post, class: "text-xs hover:underline" %>
+      </div>
+      <div id="notifications">
+          <p class="text-sm text-center hidden only:inline px-2">You have no unread notifications</p>
+          <%= render partial: 'components/notification/notification', collection: notifications %>
+      </div>
+    </div>
+  </div>
+</div>

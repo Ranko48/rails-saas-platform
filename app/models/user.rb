@@ -6,7 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :tickets
+  has_many :tickets, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   validates :timezone, inclusion: { in: ActiveSupport::TimeZone.all.map(&:name) }
   validates :first_name, presence: true, length: { minimum: 2, maximum: 300 }

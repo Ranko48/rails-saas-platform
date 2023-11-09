@@ -7,12 +7,13 @@
     </div>
     <div class="flex items-center w-auto w-full justify-end" id="menu">
       <nav>
-        <ul class="text-xl text-center items-center gap-x-5 pt-4 md:gap-x-4 lg:text-lg lg:flex lg:pt-0">
+        <ul class="text-xl text-center items-center gap-x-5 pt-4 md:gap-x-4 lg:text-lg flex lg:pt-0 ">
+          <%= render partial: "components/notification/notification_menu", locals: { notifications: Notification.where(user: current_user, has_read: false).order(created_at: :desc)} %>
           <div data-controller="visibility" class="relative">
-            <button data-action="click->visibility#toggleTargets click@window->visibility#hideTargets touchend@window->visibility#hideTargets" class="flex w-30 justify-center shadow text-right gap-x-2 rounded-full bg-white px-5 py-4 text-xs font-light text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="avatar-menu">
+            <button data-action="click->visibility#toggleAvatarTargets click@window->visibility#hideAvatarTargets touchend@window->visibility#hideAvatarTargets" class="flex w-30 justify-center shadow text-right gap-x-2 rounded-full bg-white px-5 py-4 text-xs font-light text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="avatar-menu">
               <%= current_user.email[0].upcase %>
             </button>
-            <div class="absolute w-[300px] shadow-md right-0 border bg-white top-[55px] rounded text-left" data-visibility-target="hideable" hidden>
+            <div class="absolute w-[300px] shadow-md right-0 border bg-white top-[55px] rounded text-left" data-visibility-target="avatar" hidden>
               <div class="flex flex-col px-3 py-3">
                 <div class="bg-grey-800 px-4 pt-10 pb-5 text-xs text-gray-500 border-b border-b-grey-600 flex items-center">
                   <div class="flex w-30 justify-center gap-x-2 rounded-full bg-white px-5 py-4 text-xs font-light text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">
