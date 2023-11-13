@@ -64,6 +64,6 @@ class TicketsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def ticket_params
-    params.fetch(:ticket, {}).permit(:problem)
+    params.fetch(:ticket, {}).permit(:problem, :attachment)
   end
 end

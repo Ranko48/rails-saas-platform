@@ -1,9 +1,13 @@
 <%= form_with(model: ticket, class: "contents") do |form| %>
-
   <div class="flex flex-col">
     <%= form.text_area :problem, class: "rounded-lg py-2 px-2 w-full mb-2" %>
     <%= form.label :category %>
     <%= form.select :category, options_for_select(Ticket.categories.map {|key, value| [key.titleize, Ticket.categories.key(value)]}), class: "rounded-lg py-2 px-2 w-full" %>
+    <div class="flex flex-col mt-2 mb-2">
+      <%= form.label "Add Attachment (optional)" %>
+      <%= form.file_field :attachment, class: "w-[250px] text-sm cursor-pointer focus:outline-none" %>
+      <p class="mt-1 text-xs italic mb-1 text-left text-gray-600">Attachment must be less than 10MB</p>
+    </div>
     <%= form.submit "Open Ticket", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer w-fit mt-5" %>
   </div>
 <% end %>

@@ -1,16 +1,21 @@
   <%= turbo_frame_tag dom_id(@ticket, 'form') do %>
   <div class="flex flex-col items-center">
     <div class="w-[100%] sm:w-[50%] flex-1">
-  <%= form_for(ticket_comment, url: new_ticket_comment_path(@ticket.id), html: { id: "ticket_comments_form", method: :post }) do |f| %>
-    <div class="border border-gray-500 flex flex-col mt-10 mb-5 field">
-      <%= f.text_area :comment, placeholder: "Reply or add more description to your ticket...", style: "resize: none;", rows: "4", class: "w-full border-0 border-b"  %>
-      <div class="flex justify-end bg-gray-100">
-        <div class="mr-2 w-fit">
-        <%= f.submit "Post", data: { disable_with: "Posting..." }, class: "w-[200px] py-1 px-10 bg-blue-600 text-white hover:bg-blue-700 grow" %>
+      <%= form_for(ticket_comment, url: new_ticket_comment_path(@ticket.id), html: { id: "ticket_comments_form", method: :post }) do |f| %>
+        <div class="border border-gray-500 flex flex-col mt-10 mb-5 field">
+          <%= f.text_area :comment, placeholder: "Reply or add more description to your ticket...", style: "resize: none;", rows: "4", class: "w-full border-0 border-b"  %>
+          <div class="bg-gray-100">
+            <div class="mr-2 w-[100%] flex flex-wrap justify-between items-end">
+              <div class="flex flex-col">
+                <%= f.label "Add Attachment (optional)", class: "text-left px-2 text-sm" %>
+                <%= f.file_field :attachment, class: "w-[250px] text-sm cursor-pointer focus:outline-none px-2 pb-2" %>
+                <p class="px-2 text-xs italic mb-1 text-left text-gray-600">Attachment must be less than 10MB</p>
+              </div>
+                <%= f.submit "Post", data: { disable_with: "Posting..." }, class: "grow sm:grow-0 w-[200px] py-1 px-10 bg-blue-600 text-white hover:bg-blue-700 grow ml-2 mr-2" %>
+            </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
-  <% end %>
   </div>
-</div>
 <% end %>
