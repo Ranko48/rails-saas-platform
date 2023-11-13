@@ -26,8 +26,8 @@ resource "aws_ecs_task_definition" "app" {
       {"name": "DB_NAME", "value": "${module.db.db_instance_name}"},
       {"name": "REDIS_URL", "value": "redis://${module.redis.elasticache_replication_group_primary_endpoint_address}/"},
       {"name": "MEDIA_BUCKET_NAME", "value": "${aws_s3_bucket.main_bucket.id}"},
-      {"name": "SECRET_KEY_BASE", "value": "${var.secret_key}"}
-      {"name": "SECRET_ACCESS_KEY", "value": "${var.aws_secret_access_key}"}
+      {"name": "SECRET_KEY_BASE", "value": "${var.secret_key}"},
+      {"name": "SECRET_ACCESS_KEY", "value": "${var.aws_secret_access_key}"},
       {"name": "ACCESS_KEY_ID", "value": "${var.aws_access_key_id}"}
     ],
     "portMappings": [
