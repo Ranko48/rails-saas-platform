@@ -80,3 +80,5 @@ gem 'rubocop', require: false
 gem 'sentry-ruby'
 
 gem 'sentry-rails'
+
+gem 'aws-sdk-s3', require: false

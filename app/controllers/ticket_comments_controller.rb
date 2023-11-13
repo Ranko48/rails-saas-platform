@@ -29,6 +29,6 @@ class TicketCommentsController < ApplicationController
   private
 
   def ticket_comment_params
-    params.fetch(:ticket_comment, {}).permit(:comment)
+    params.fetch(:ticket_comment, {}).permit(:comment, :attachment)
   end
 end
